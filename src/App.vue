@@ -1,20 +1,39 @@
 <template>
-  <div>这是我的第一个单文件组件
-      <p class="box">hello world</p>
-      <img src="../images/cat.png" alt="">
-      <router-link to="/login">去登陆</router-link>
-      <router-view></router-view>
+  <div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-    .box{
-        color:red;
-    }
+/* 这里原型图大小是360px,故换算成vw需要把 当前px单位的数值/360*100vw */
+@import url('../node_modules/vant/lib/index.css');
+@import url("http://at.alicdn.com/t/font_1426139_h6vn3jbl5q.css");
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+li,
+dl {
+  list-style: none;
+}
+input {
+  outline: none;
+  border: none;
+}
+a {
+  color: rgb(148, 148, 148);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+i,
+em {
+  font-style: normal;
+}
 </style>
