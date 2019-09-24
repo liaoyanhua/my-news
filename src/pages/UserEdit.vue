@@ -29,7 +29,6 @@ export default {
         Authorization: localStorage.getItem("token")
       }
     }).then(res => {
-      console.log(res);
       if (res.data.message === "获取成功") {
         this.profile = res.data.data;
         if (this.profile.head_img) {
@@ -38,7 +37,6 @@ export default {
         } else {
           this.profile.head_img = "../../static/images/pink.jpg";
         }
-        console.log(this.profile);
       }
     });
     }
