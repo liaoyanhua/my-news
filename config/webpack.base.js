@@ -2,6 +2,7 @@ const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); //导入提取样式css的插件
 const HtmlWebpackPlugin = require("html-webpack-plugin"); //引入自动生成html的插件
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); // 引入vue-loader插件
+const CopyPlugin = require("copy-webpack-plugin");//导入复制包
 const {
     CleanWebpackPlugin
 } = require('clean-webpack-plugin'); //引入清楚不必要的插件
@@ -65,6 +66,9 @@ module.exports = {
             template: "public/index.html" // template指定默认html模板
         }),
         new CleanWebpackPlugin(), // 调用清除打包目录插件
-        new VueLoaderPlugin() //vue加载器插件
+        new VueLoaderPlugin(),//vue加载器插件
+          new CopyPlugin([   //配置复制包插件
+            { from: 'static', to: 'static' },
+        ]),
     ]
 }

@@ -59,12 +59,15 @@ export default {
         data:this.form,
         url:"/login"
       }).then(res=>{
-        let {message,data}=res.data;
-        console.log(123,message);
+        if(res.data){
+         let {message,data}=res.data;
         if(message==="登录成功"){
-          console.log(123);
-          this.$router.push('/');
+          localStorage.setItem('token',data.token);
+          localStorage.setItem('user_id',data.user.id)
+          this.$router.push('/userprofile');
         }
+        }
+       
       })
     }
   }

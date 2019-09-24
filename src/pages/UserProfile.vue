@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="userProfile">
-      <img src="../../static/images/pink.jpg" />
+      <img :src="profile.head_img"/>
       <div class="user">
         <div>
-          <span class="sex iconfont iconxingbienan"></span>火星网友
+          <span class="sex iconfont iconxingbienan"></span>{{profile.nickname}}
         </div>
         <div class="time">2019-09-24</div>
       </div>
@@ -23,6 +23,30 @@ import UserNav from "@/components/UserNav";
 export default {
   components: {
     UserNav
+  },
+  data(){
+    return {
+      profile:{}
+    }
+  },
+  mounted(){
+    this.$axios({
+      url:'/user/'+localStorage.getItem('user_id'),
+      method:'get',
+      headers:{
+        Authorization:localStorage.getItem('token')
+      }
+    }).then(res=>{
+      console.log(res);
+      if(res.data.message==="获取成功"){
+        this.profile=res.data.data;
+        if(this.profile.head_img){
+          this.profile.head_img=this.$axios.defaults.baseURL+this.profile.head_img
+        }else{
+          this.profile.head_img='../../static/images/pink.jpg'
+        }
+      }
+    })
   },
   methods: {
     handleMe(value) {//我的关注事件
