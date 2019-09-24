@@ -36,7 +36,7 @@ export default {
     handleTest(e) {
       if (this.err_message && this.status === "error") {
         this.$toast.fail(this.err_message);
-        // return;
+        return;
       }
     }
   }

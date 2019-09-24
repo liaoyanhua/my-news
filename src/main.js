@@ -7,6 +7,7 @@ import axios from 'axios';
 //导入其他页面组件
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
+import Userprofile from '@/pages/UserProfile'
 
 Vue.prototype.$axios=axios;//将axios绑定到prototype原型上
 axios.defaults.baseURL="http://localhost:3000"//设置公共路径baseURL
@@ -15,7 +16,8 @@ Vue.use(VueRouter);//2,注册路由
 Vue.use(Vant);//注册vant-ui组件库
 const routes=[//3,配置路由
     {path:'/login',component:Login},
-    {path:'/register',component:Register}
+    {path:'/register',component:Register},
+    {path:'/userprofile',component:Userprofile}
 ]
  const router=new VueRouter({routes})//4,创建路由实例对象
 new Vue({
