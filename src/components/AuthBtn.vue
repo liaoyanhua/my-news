@@ -24,6 +24,6 @@ export default {
         width:100%;
         font-size:18/360*100vw;
         border-radius: 50/360*100vw;
-        margin-top:51/360*100vw;
+        margin-top:21/360*100vw;
     }
 </style>
