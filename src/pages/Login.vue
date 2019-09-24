@@ -53,7 +53,6 @@ export default {
       //  console.log(this.form);
     },
     handleGetForm() {
-      // console.log(this.form);
       this.$axios({
         method:'POST',
         data:this.form,

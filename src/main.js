@@ -9,6 +9,7 @@ import axios from 'axios';
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Userprofile from '@/pages/UserProfile'
+import UserEdit from '@/pages/UserEdit'
 
 Vue.prototype.$axios=axios;//将axios绑定到prototype原型上
 axios.defaults.baseURL="http://localhost:3000"//设置公共路径baseURL
@@ -18,14 +19,36 @@ Vue.use(Vant);//注册vant-ui组件库
 const routes=[//3,配置路由
     {path:'/login',component:Login},
     {path:'/register',component:Register},
-    {path:'/userprofile',component:Userprofile}
+    {path:'/userprofile',component:Userprofile},
+    {path:'/user-edit',component:UserEdit}
 ]
  const router=new VueRouter({routes})//4,创建路由实例对象
+
+//创建一个导航守卫
+router.beforeEach((to,from,next)=>{
+    let hasToken=localStorage.getItem('token');
+    if(to.path==='/userprofile'){
+      if(hasToken){
+          next()
+      }else{
+          next('/login')
+      }
+    }else{
+        next();
+    }
+})
 
  //创建一个请求守卫
     axios.interceptors.response.use(res=>{
         if(res.data.statusCode===401){
-            Toast.fail(res.data.message);
+            let {message}=res.data;
+            Toast.fail(message);
+            if(message==='用户信息验证失败'){
+                setTimeout(()=>{
+                    router.push('/login');
+                },3000);
+               
+            }
         }
         return res
     },(err)=>{

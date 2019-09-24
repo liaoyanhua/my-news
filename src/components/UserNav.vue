@@ -1,7 +1,7 @@
 <template>
   <div class="nav-wrap">
       <div class="user" @click="$emit('click',$event)">
-          <span>{{nav_text}}</span>
+          <span class="obj_name">{{nav_text}}</span>
           <span class="person">{{text}}</span>
           <span class="iconfont iconjiantou1"></span>
       </div>
@@ -28,6 +28,9 @@ export default {
         align-items: center;
         span{
             display: block;
+        }
+        .obj_name{
+            font-size:16/360*100vw;
         }
         .person{
             flex:1;
