@@ -2,7 +2,7 @@
   <div class="nav-wrap">
       <div class="user" @click="$emit('click',$event)">
           <span class="obj_name">{{nav_text}}</span>
-          <span class="person">{{text}}</span>
+          <span class="person">{{type==='password'?'******':text}}</span>
           <span class="iconfont iconjiantou1"></span>
       </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-    props:['nav_text','text'],
+    props:['nav_text','text','type'],
     
 }
 </script>

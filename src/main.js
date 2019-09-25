@@ -10,6 +10,8 @@ import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Userprofile from '@/pages/UserProfile'
 import UserEdit from '@/pages/UserEdit'
+import UserFollow from '@/pages/UserFollow'
+
 
 Vue.prototype.$axios=axios;//将axios绑定到prototype原型上
 axios.defaults.baseURL="http://localhost:3000"//设置公共路径baseURL
@@ -20,7 +22,8 @@ const routes=[//3,配置路由
     {path:'/login',component:Login},
     {path:'/register',component:Register},
     {path:'/userprofile',component:Userprofile},
-    {path:'/user-edit',component:UserEdit}
+    {path:'/user-edit',component:UserEdit},
+    {path:'/user-follow',component:UserFollow}
 ]
  const router=new VueRouter({routes})//4,创建路由实例对象
 

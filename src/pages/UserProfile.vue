@@ -1,29 +1,34 @@
 <template>
   <div class="container">
+ <ProfileHead text="个人主页"/>
+    <router-link to="user-edit">
     <div class="userProfile">
       <img :src="profile.head_img" />
       <div class="user">
         <div>
-          <span class="sex iconfont iconxingbienan"></span>
+          <span class=" iconfont" :class="profile.gender===1?'sex1 iconxingbienan':'sex0 iconxingbienv'"></span>
           {{profile.nickname}}
         </div>
         <div class="time">2019-09-24</div>
       </div>
       <span class="iconfont iconjiantou1"></span>
     </div>
-    <UserNav nav_text="我的关注" text="关注的用户" @click="handleMe" />
+    </router-link>
+    <UserNav nav_text="我的关注" text="关注的用户" @click="$router.push('/user-follow')" />
     <UserNav nav_text="我的跟帖" text="跟帖/回复" @click="handleGen" />
     <UserNav nav_text="我的收藏" text="文章/视频" @click="handleFavorite" />
-    <UserNav nav_text="设置" @click="handleSet" />
+    <UserNav nav_text="设置" @click="$router.push('/user-edit')" />
     <UserNav nav_text="退出" @click="handleLogout" />
   </div>
 </template>
 
 <script>
+import ProfileHead from '@/components/ProfileHead'
 import UserNav from "@/components/UserNav";
 export default {
   components: {
-    UserNav
+    UserNav,
+    ProfileHead
   },
   data() {
     return {
@@ -38,7 +43,6 @@ export default {
         Authorization: localStorage.getItem("token")
       }
     }).then(res => {
-      console.log(res);
       if (res.data.message === "获取成功") {
         this.profile = res.data.data;
         if (this.profile.head_img) {
@@ -51,20 +55,6 @@ export default {
     });
   },
   methods: {
-    handleMe(value) {
-      //我的关注事件
-      console.log(value);
-    },
-    handleGen(value) {
-      //跟帖事件
-    },
-    handleFavorite(value) {
-      //我的收藏事件
-    },
-    handleSet(value) {
-      //设置事件
-      this.$router.push('/user-edit')
-    },
     handleLogout(value) {
       //退出事件
       localStorage.removeItem("token");
@@ -93,7 +83,11 @@ export default {
     .user {
       padding: 0 10px;
       flex: 1;
-      .sex {
+      .sex0 {
+        color: rgb(255, 62, 201);
+        margin-right: 10/360 * 100vw;
+      }
+      .sex1 {
         color: rgb(129, 191, 236);
         margin-right: 10/360 * 100vw;
       }
