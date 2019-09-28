@@ -15,8 +15,8 @@
     </div>
     </router-link>
     <UserNav nav_text="我的关注" text="关注的用户" @click="$router.push('/user-follow')" />
-    <UserNav nav_text="我的跟帖" text="跟帖/回复" @click="handleGen" />
-    <UserNav nav_text="我的收藏" text="文章/视频" @click="handleFavorite" />
+    <UserNav nav_text="我的跟帖" text="跟帖/回复" @click="$router.push('/user-post')" />
+    <UserNav nav_text="我的收藏" text="文章/视频" @click="$router.push('/user-follow')" />
     <UserNav nav_text="设置" @click="$router.push('/user-edit')" />
     <UserNav nav_text="退出" @click="handleLogout" />
   </div>
